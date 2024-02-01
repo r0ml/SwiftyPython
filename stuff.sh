@@ -33,3 +33,27 @@ python3 build-installer.py --universal-archs=universal2 --third-party=../../../o
 # the framework winds up here:
 # /tmp/_py/_root/Library/Frameworks/Python.framework/
 
+mkdir -p Products
+ditto /tmp/_py/_root Products
+
+mkdir -p HandRolled
+cd HandRolled
+xcodebuild -create-xcframework -framework ../Products/Library/Frameworks/Python.framework -output PythonX.xcframework
+
+########################################################
+
+# stuff I haven't used
+# xcodebuild -create-xcframework \
+    -library build/simulators/libMyStaticLib.a \
+    -library build/devices/libMyStaticLib.a \
+    -output build/MyStaticLib.xcframework
+
+# libssl
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libssl.3.dylib @loader_path/../../libssl.3.dylib /Users/r0ml/Library/Developer/Xcode/DerivedData/CaerbannogSample-cxekduypjjvbmpbscvretmxkqmdu/Build/Products/Debug/CaerbannogSample.app/Contents/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_ssl.cpython-312-darwin.so
+
+# libcrypto
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib @loader_path/../../libcrypto.3.dylib /Users/r0ml/Library/Developer/Xcode/DerivedData/CaerbannogSample-cxekduypjjvbmpbscvretmxkqmdu/Build/Products/Debug/CaerbannogSample.app/Contents/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_ssl.cpython-312-darwin.so
+
+# in Products/Library/Frameworks
+# install_name_tool -id "@loader_path/Frameworks/Python.framework/Versions/3.12/Python" Python
+# install_name_tool -id "@loader_path/../Frameworks/Python.framework/Versions/3.12/Python" Python
