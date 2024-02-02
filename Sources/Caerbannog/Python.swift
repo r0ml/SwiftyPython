@@ -95,17 +95,19 @@ public class PythonInterface {
     // builtins["sys"] = sys
     
     //  // If I were initialized, I could have said:
+    // FIXME: this should be in the app! not in the package!!!
+    
     let sys = self.sys
     let bb = Bundle.main.resourceURL!
-    let bb1 = bb.appendingPathComponent("venv").appendingPathComponent("lib")
-    let bb2 = try! FileManager.default.contentsOfDirectory(atPath: bb1.path)
-    for k in bb2 {
-      let bb3 = bb1.appendingPathComponent(k).appendingPathComponent("site-packages")
-      try! sys.path.insert(0, bb3.path)
-    }
- 
-    // FIXME: put this back to make SSL work
-/*
+    let bb1 = bb.appendingPathComponent("venv").appendingPathComponent("site-packages")
+    try! sys.path.insert(0, bb1.path)
+    
+    let bb2 = bb1.appendingPathComponent("PIL")
+    try! sys.path.insert(1, bb2.path)
+    
+    let bb3 = bb1.appendingPathComponent("numpy").appendingPathComponent("core")
+    try! sys.path.insert(2, bb3.path)
+    
  let _ = Python.run("""
 import ssl
 import certifi
@@ -115,7 +117,7 @@ def _create_certifi_context():
 
 ssl._create_default_https_context = _create_certifi_context
 """)
- */
+
   }
 
     
@@ -136,6 +138,14 @@ ssl._create_default_https_context = _create_certifi_context
     return PythonObject(consuming: PyNone)
   }
   }
+  
+  public func imports( _ sub : String, from: String) -> PythonObject {
+    let a = PyList_New(1)
+    let z = PyList_SetItem(a, 0, sub.pythonObject.pointer)
+    let iml = PyImport_ImportModuleLevel(from, nil, nil, a, 0)
+    return PythonObject(retaining: iml!)
+  }
+  
   
   // Python error (if active) thrown as a Swift error
   
@@ -214,9 +224,13 @@ public struct PythonObject {
 
 extension PythonObject : CustomStringConvertible {
   public var description: String {
-    let z = PythonObject(retaining: PyEval_GetBuiltins())
-    let str = z["str"]!
-    return try! String( str(self))!
+    if Py_IsNone(pointer) != 0 {
+      return "None"
+    } else {
+      let z = PythonObject(retaining: PyEval_GetBuiltins())
+      let str = z["str"]!
+      return try! String( str(self))!
+    }
   }
   
   public var debugDescription: String {

@@ -22,23 +22,18 @@ tar --exclude .git -zcvf ncurses-5.9.tar.gz ncurses-5.9
 
 mv ncurses-5.9.tar.gz ~/Repositories/SwiftyPython/other/ncurses-5.9.tar.gz
 
-CD ~/Repositories/SwiftyPython/other
+cd ~/Repositories/SwiftyPython/other
 md5 ncurses-5.9.tar.gz
 
-cd ~Repositories/SwiftyPython/cpython/Mac/BuildScript
-python3 build-installer.py --universal-archs=universal2 --third-party=../../../other --dep-target=10.9
+####################################################################
+# the above was done and committed to SwiftyPython repo -- only need to possibly repeat for newer
+# version of cpython
+####################################################################
 
+# After cloning:
+git submodule init
+git submodule update
 
-###
-# the framework winds up here:
-# /tmp/_py/_root/Library/Frameworks/Python.framework/
-
-mkdir -p Products
-ditto /tmp/_py/_root Products
-
-mkdir -p HandRolled
-cd HandRolled
-xcodebuild -create-xcframework -framework ../Products/Library/Frameworks/Python.framework -output PythonX.xcframework
 
 ########################################################
 
@@ -55,5 +50,9 @@ xcodebuild -create-xcframework -framework ../Products/Library/Frameworks/Python.
 # install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib @loader_path/../../libcrypto.3.dylib /Users/r0ml/Library/Developer/Xcode/DerivedData/CaerbannogSample-cxekduypjjvbmpbscvretmxkqmdu/Build/Products/Debug/CaerbannogSample.app/Contents/Frameworks/Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_ssl.cpython-312-darwin.so
 
 # in Products/Library/Frameworks
-# install_name_tool -id "@loader_path/Frameworks/Python.framework/Versions/3.12/Python" Python
 # install_name_tool -id "@loader_path/../Frameworks/Python.framework/Versions/3.12/Python" Python
+
+############################################################
+# problem created by attempting to cross device link the docs into /tmp
+# OSError: [Errno 18] Cross-device link: 'build/html' -> '/tmp/_py/_root/pydocs'
+# on build_installer.py 1764, 1725, 1119
