@@ -1,7 +1,7 @@
 
 import SwiftUI
 import AVKit
-import Caerbannog
+import PythonSupport
 
 extension Demo {
   static public func runNumpyDemo() {

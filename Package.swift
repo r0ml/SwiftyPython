@@ -12,7 +12,7 @@ let package = Package.init(
     // Products define the executables and libraries produced by a package, and make them visible to other packages.
     .library(
       name: "Python",
-      targets: ["Caerbannog", "PythonX", "PythonWrapper"]),
+      targets: ["PythonSupport", "PythonX", "PythonWrapper"]),
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
@@ -21,7 +21,7 @@ let package = Package.init(
   ],
   targets: [
     .target(
-      name: "Caerbannog",
+      name: "PythonSupport",
       dependencies: ["PythonWrapper", "PythonX"]
     ),
     .target(
@@ -30,8 +30,8 @@ let package = Package.init(
  //     publicHeadersPath: "./HandRolled/Python.xcframework/macos-arm64_x86_64/Python.framework/Headers"
       
       cSettings: [
-        .headerSearchPath("./Products/Library/Frameworks/Python.framework/Headers"),
-         .headerSearchPath("Python.xcframework/"),
+//        .headerSearchPath("./Products/Library/Frameworks/Python.framework/Headers"),
+//         .headerSearchPath("Python.xcframework/"),
         .headerSearchPath("Python.framework/Headers")
        
       ]

@@ -1,7 +1,7 @@
 
 import SwiftUI
 import WebKit
-import Caerbannog
+import PythonSupport
 
 extension Demo {
   static public func runDominateDemo() {

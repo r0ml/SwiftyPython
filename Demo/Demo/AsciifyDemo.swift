@@ -1,7 +1,7 @@
 
 import SwiftUI
 import PythonWrapper
-import Caerbannog
+import PythonSupport
 
 extension Demo {
   static public func runAsciify() {
