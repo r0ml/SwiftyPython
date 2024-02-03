@@ -20,7 +20,6 @@
 		E7A6EC372B6D41DA0010E6C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7A6EC302B6D41DA0010E6C6 /* Assets.xcassets */; };
 		E7A6EC382B6D41DA0010E6C6 /* NumpyMatplotlibDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC312B6D41DA0010E6C6 /* NumpyMatplotlibDemo.swift */; };
 		E7A6EC392B6D41DA0010E6C6 /* AsciifyDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC322B6D41DA0010E6C6 /* AsciifyDemo.swift */; };
-		E7B8F2D52B69A8F7004D109C /* stuff.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E7B8F2D42B69A8F7004D109C /* stuff.rtf */; };
 		E7B8F2D72B69A989004D109C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7B8F2D62B69A989004D109C /* README.md */; };
 		E7B8F2D92B69A9B2004D109C /* requirements.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7B8F2D82B69A9B2004D109C /* requirements.txt */; };
 		E7BCFB6E233ABB5400C5489E /* ModuleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BCFB6D233ABB5400C5489E /* ModuleDemo.swift */; };
@@ -68,7 +67,6 @@
 		E7A6EC302B6D41DA0010E6C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7A6EC312B6D41DA0010E6C6 /* NumpyMatplotlibDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpyMatplotlibDemo.swift; sourceTree = "<group>"; };
 		E7A6EC322B6D41DA0010E6C6 /* AsciifyDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciifyDemo.swift; sourceTree = "<group>"; };
-		E7B8F2D42B69A8F7004D109C /* stuff.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = stuff.rtf; sourceTree = "<group>"; };
 		E7B8F2D62B69A989004D109C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E7B8F2D82B69A9B2004D109C /* requirements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = requirements.txt; sourceTree = "<group>"; };
 		E7BCFB6D233ABB5400C5489E /* ModuleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDemo.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 				E7A6EC282B6C51B10010E6C6 /* getmodules.sh */,
 				E7B8F2D82B69A9B2004D109C /* requirements.txt */,
 				E7B8F2D62B69A989004D109C /* README.md */,
-				E7B8F2D42B69A8F7004D109C /* stuff.rtf */,
 				E733070F231B1ED1008A2E69 /* venv */,
 				E73306F2231B11FF008A2E69 /* Demo */,
 				E73306F1231B11FF008A2E69 /* Products */,
@@ -216,7 +213,6 @@
 			files = (
 				E7B8F2D72B69A989004D109C /* README.md in Resources */,
 				E73306FB231B1200008A2E69 /* Preview Assets.xcassets in Resources */,
-				E7B8F2D52B69A8F7004D109C /* stuff.rtf in Resources */,
 				E7C275D1232BF9AF00208F12 /* README.txt in Resources */,
 				E7A6EC372B6D41DA0010E6C6 /* Assets.xcassets in Resources */,
 				E7B8F2D92B69A9B2004D109C /* requirements.txt in Resources */,

@@ -40,14 +40,25 @@ public class PythonInterface {
   
   public init() {
     let hh = Bundle.main.privateFrameworksURL!
+    print("private framework bundle: \(hh.path)")
+
+    let hh2 = Bundle(for: Self.self).bundleURL
+    print("my bundle: \(hh2.path)")
+    
+    let hh1 = hh2.deletingLastPathComponent().appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
+
 /*
  let kk = try? FileManager.default.contentsOfDirectory(
             at: hh,
             includingPropertiesForKeys: nil
         )
  */
+    /*
      let hh1 = hh.appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
 //    let hh1 = kk!.first!
+    print("setting PythonHomw: \(hh1.path)")
+    */
+    
     hh1.path.withWideChars {
       Py_SetPythonHome( $0 )
     }
@@ -102,11 +113,13 @@ public class PythonInterface {
     let bb1 = bb.appendingPathComponent("venv").appendingPathComponent("site-packages")
     try! sys.path.insert(0, bb1.path)
     
+    /*
     let bb2 = bb1.appendingPathComponent("PIL")
     try! sys.path.insert(1, bb2.path)
     
     let bb3 = bb1.appendingPathComponent("numpy").appendingPathComponent("core")
     try! sys.path.insert(2, bb3.path)
+    */
     
  let _ = Python.run("""
 import ssl
@@ -189,6 +202,20 @@ ssl._create_default_https_context = _create_certifi_context
       let z = $0.pythonObject
       return PythonObject(retaining: PyDict_GetItem(pyGlobals, z.pointer))
     }
+    return r
+  }
+  
+  public func eval(_ str: String) -> PythonObject {
+    PyErr_Clear()
+//    let jj = PyEval_GetLocals()
+    let kk = PyDict_New()
+    
+    let j = PyRun_StringFlags(str, Py_eval_input, pyGlobals, kk, nil)
+    if PyErr_Occurred() != nil {
+      PyErr_Print()
+      PyErr_Clear()
+    }
+    let r = PythonObject(retaining: j!)
     return r
   }
 }

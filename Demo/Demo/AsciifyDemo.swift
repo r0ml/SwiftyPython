@@ -75,9 +75,9 @@ boodoo = 'goober'
             
               let j = try! pi.open(f.path)
             let k = try? j.resize([150,75].pythonObject, pi.LANCZOS)
-               let aa = Python.asciify.AsciiManager()
-            let bb = aa.transform(k)
-              self.asciid = String(aa!)
+            let aa = try! Python.asciify.AsciiManager.__init__()
+            let bb = try? aa.transform(k)
+              self.asciid = String(bb!)
               self.visible = true
 /*            } else {
               if PyErr_Occurred() != nil {
