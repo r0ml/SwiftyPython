@@ -4,33 +4,15 @@
 import SwiftUI
 import PythonSupport
 
-class Alerter : ObservableObject {
-  @Published var showing : Bool = false
-  @Published var title : String = "title"
-  @Published var message : String = "message"
-  @Published var dismiss : String = "Got it!"
-}
-
-extension Demo {
-  static func runModuleDemo() {
-    alview = AlertView(flag: alerter)
-    
-    let w = NSWindow(
-      contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-      styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-      backing: .buffered, defer: false)
-    w.center()
-    w.contentMinSize = CGSize(width: 480, height: 300)
-    w.setFrameAutosaveName("Alert Window")
-    w.isReleasedWhenClosed = false
-    w.contentView = NSHostingView(rootView: alview!)
-    window = w
-    window?.makeKeyAndOrderFront(nil)
-  }
+@Observable class Alerter {
+  var showing : Bool = false
+  var title : String = "title"
+  var message : String = "message"
+  var dismiss : String = "Got it!"
 }
 
 struct AlertView: View {
-  @ObservedObject var flag : Alerter
+  @State var showing : Bool = false
   
   var body: some View {
 
@@ -46,13 +28,18 @@ swift_module.alert('one','two','three')
     }) {
       Text("Show Alert")
     }
-    .alert(isPresented: $flag.showing) {
-      Alert(title: Text(flag.title), message: Text(flag.message), dismissButton: .default(Text(flag.dismiss)))
+    .alert(isPresented: $showing) {
+      Alert(title: Text(alerter.title), message: Text(alerter.message), dismissButton: .default(Text(alerter.dismiss)))
     }.frame(minWidth: 480, minHeight: 300)
+      .onChange(of: alerter.showing) {
+        showing = alerter.showing
+      }
+      .onChange(of: showing) {
+        alerter.showing = showing
+      }
   }
 }
 
-fileprivate var window : NSWindow?
 fileprivate var alview : AlertView?
 fileprivate var alerter = Alerter()
 
@@ -72,7 +59,6 @@ func swiftModuleAlert(_ a : PyObjectRef?, _ b : PyObjectRef?) -> PyObjectRef? {
     if j > 2, let s = String(po[2]) { alerter.dismiss = s }
   }
   
-  window?.makeKeyAndOrderFront(nil)
   alerter.showing = true
   return PyNone
 }

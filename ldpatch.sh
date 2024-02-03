@@ -64,3 +64,13 @@ install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib
 #######################################
 
 
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../../Python' ../Products/Library/Frameworks/Python.framework/Versions/Current/Resources/Python.app/Contents/MacOS/Python
+
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../Python' ../Products/Library/Frameworks/Python.framework/Versions/Current/bin/python3
+
+# -- then:
+./python3 -m ensurepip
+# which will check that the above zaps worked -- and also install pip
+
+# e.g.:
+# ./python3 -m pip install --target ../../../../../../../Demo/venv/site-packages asciify

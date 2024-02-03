@@ -2,8 +2,15 @@
 import SwiftUI
 import PythonSupport
 
-extension Demo {
-  static public func runNumpyMatplotlibDemo() {
+struct NumpyMatplotlibView : View {
+  var body : some View {
+    let plot = runNumpyMatplotlibDemo()
+    Image(nsImage: plot)
+      .resizable()
+      .aspectRatio(contentMode: .fit)
+  }
+  
+  func runNumpyMatplotlibDemo() -> NSImage {
     let str = """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -30,36 +37,20 @@ result = buf.getvalue()
     
     guard let hh = Python.run(str, returning: "result") else {
       print("failed to run python code")
-      return
+      return NSImage()
     }
     
     let hi = Data(hh)!
     let imm = NSImage(data: hi)!
-    
-    let window = NSWindow(
-      contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-      styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-      backing: .buffered, defer: false)
-    window.center()
-    window.setFrameAutosaveName("Numpy Matplotlib Demo")
-    window.isReleasedWhenClosed = false
-    window.contentView = NSHostingView(rootView: NumpyMatplotlibView(plot: imm))
-    window.makeKeyAndOrderFront(nil)
+    return imm
   }
-}
 
-struct NumpyMatplotlibView : View {
-  var plot : NSImage
-  var body : some View {
-    Image(nsImage: plot)
-      .resizable()
-      .aspectRatio(contentMode: .fit)
-  }
+  
 }
 
 struct NumpyMatplotlib_Previews: PreviewProvider {
   static var previews: some View {
-    NumpyMatplotlibView(plot: NSImage() )
+    NumpyMatplotlibView( )
   }
 }
 

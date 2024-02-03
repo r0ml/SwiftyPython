@@ -2,20 +2,6 @@
 import SwiftUI
 import PythonSupport
 
-extension Demo {
-  static public func runBotoDemo() {
-    let window = NSWindow(
-      contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-      styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-      backing: .buffered, defer: false)
-    window.center()
-    window.setFrameAutosaveName("Boto Demo")
-    window.isReleasedWhenClosed = false
-    window.contentView = NSHostingView(rootView: BotoView())
-    window.makeKeyAndOrderFront(nil)
-  }
-}
-
 struct BotoView : View {
   @State var accessKey : String = ""
   @State var secretKey : String = ""

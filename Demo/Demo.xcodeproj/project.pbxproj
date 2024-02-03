@@ -13,7 +13,7 @@
 		E73306F8231B1200008A2E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73306F7231B1200008A2E69 /* Assets.xcassets */; };
 		E73306FB231B1200008A2E69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73306FA231B1200008A2E69 /* Preview Assets.xcassets */; };
 		E7A6EC2B2B6C9BEC0010E6C6 /* Python in Frameworks */ = {isa = PBXBuildFile; productRef = E7A6EC2A2B6C9BEC0010E6C6 /* Python */; };
-		E7A6EC332B6D41DA0010E6C6 /* GoogleImagesDownloadDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2C2B6D41DA0010E6C6 /* GoogleImagesDownloadDemo.swift */; };
+		E7A6EC332B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2C2B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift */; };
 		E7A6EC342B6D41DA0010E6C6 /* DominateDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2D2B6D41DA0010E6C6 /* DominateDemo.swift */; };
 		E7A6EC352B6D41DA0010E6C6 /* NumpyDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */; };
 		E7A6EC362B6D41DA0010E6C6 /* BotoDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2F2B6D41DA0010E6C6 /* BotoDemo.swift */; };
@@ -61,7 +61,7 @@
 		E7330700231B1200008A2E69 /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 		E733070F231B1ED1008A2E69 /* venv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = venv; sourceTree = "<group>"; };
 		E7A6EC282B6C51B10010E6C6 /* getmodules.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = getmodules.sh; sourceTree = "<group>"; };
-		E7A6EC2C2B6D41DA0010E6C6 /* GoogleImagesDownloadDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleImagesDownloadDemo.swift; sourceTree = "<group>"; };
+		E7A6EC2C2B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingImagesDownloadDemo.swift; sourceTree = "<group>"; };
 		E7A6EC2D2B6D41DA0010E6C6 /* DominateDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominateDemo.swift; sourceTree = "<group>"; };
 		E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpyDemo.swift; sourceTree = "<group>"; };
 		E7A6EC2F2B6D41DA0010E6C6 /* BotoDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BotoDemo.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				E7330700231B1200008A2E69 /* Demo.entitlements */,
 				E73306F5231B11FF008A2E69 /* ContentView.swift */,
 				E7A6EC2D2B6D41DA0010E6C6 /* DominateDemo.swift */,
-				E7A6EC2C2B6D41DA0010E6C6 /* GoogleImagesDownloadDemo.swift */,
+				E7A6EC2C2B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift */,
 				E73306FF231B1200008A2E69 /* Info.plist */,
 				E7BCFB6D233ABB5400C5489E /* ModuleDemo.swift */,
 				E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */,
@@ -232,7 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E73306F6231B11FF008A2E69 /* ContentView.swift in Sources */,
-				E7A6EC332B6D41DA0010E6C6 /* GoogleImagesDownloadDemo.swift in Sources */,
+				E7A6EC332B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift in Sources */,
 				E7A6EC382B6D41DA0010E6C6 /* NumpyMatplotlibDemo.swift in Sources */,
 				E7A6EC392B6D41DA0010E6C6 /* AsciifyDemo.swift in Sources */,
 				E7BCFB6E233ABB5400C5489E /* ModuleDemo.swift in Sources */,

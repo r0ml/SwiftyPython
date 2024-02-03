@@ -2,6 +2,7 @@
 import SwiftUI
 import PythonWrapper
 import os
+import PythonSupport
 
 let log = Logger()
 
@@ -84,39 +85,34 @@ fileprivate func myInitFn() -> PyObjectRef? {
 extension StdoutCapture : TextOutputStream {
   public func write(_ string: String) {
     print(string)
-    stringer.log.write(string)
+    stringer.write(string)
   }
 }
+
+var stringer = ""
 
 public class StdoutCapture {
-  public var window : NSWindow!
-  public var stringer = Stringer()
   public init() {
     let _ = PyImport_AppendInittab(modname, myInitFn );
-
-    let win = NSWindow(
-        contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-        styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-        backing: .buffered, defer: false)
-    win.center()
-    win.isReleasedWhenClosed = false
-    win.setFrameAutosaveName("Caerbannog Sample Window")
-    win.contentView = NSHostingView(rootView: StdoutView(stdout: stringer))
-    win.makeKeyAndOrderFront(nil)
-    window = win
   }
 }
 
-public class Stringer : ObservableObject {
-  @Published var log : String = ""
+public class Stringer {
+  var log : String = ""
 }
 
-struct StdoutView : View {
-  @ObservedObject fileprivate var stdout : Stringer
+public struct StdoutView : View {
+  @State var stdoutlog = ""
   
-  var body : some View {
+  public init() {
+  }
+  
+  public var body : some View {
     ScrollView(.vertical, showsIndicators: true) {
-      TextField.init("Python standard output", text: $stdout.log).fixedSize(horizontal: false, vertical: true)
+      TextField.init("Python standard output", text: $stdoutlog).fixedSize(horizontal: false, vertical: true)
     }.padding()
+      .onChange(of: stringer) {
+        stdoutlog = stringer
+      }
   }
 }

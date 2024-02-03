@@ -3,21 +3,6 @@ import SwiftUI
 import PythonWrapper
 import PythonSupport
 
-extension Demo {
-  static public func runAsciify() {
-
-    let window = NSWindow(
-      contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-      styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-      backing: .buffered, defer: false)
-    window.center()
-    window.setFrameAutosaveName("Asciify Window")
-    window.isReleasedWhenClosed = false
-    window.contentView = NSHostingView(rootView: AsciifyView())
-    window.makeKeyAndOrderFront(nil)
-  }
-}
-
 struct AsciifyView : View {
   @State var tgt : Bool = false
   @State var img : NSImage?
@@ -70,7 +55,9 @@ extension AsciifyView : DropDelegate {
             // FIXME: can I set the paths for dlopen here?
             
             
+            /*
             let boodoo = Python.run("""
+import PIL.Image
 from PIL import Image
 boodoo = 'goober'
 
@@ -81,11 +68,15 @@ boodoo = 'goober'
 # import asciify
 # boodoo = asciify.do(k)
 """, returning: "boodoo")
+*/
             
-              let pi = Python.imports("Image", from: "PIL")
+//              let pi = Python.imports("Image", from: "PIL")
+            let pi = Python.PIL.Image
+            
               let j = try! pi.open(f.path)
-               let k = try? j.resize([150,75].pythonObject, pi.ANTIALIAS)
-               let aa = try? Python.asciify.do(k)
+            let k = try? j.resize([150,75].pythonObject, pi.LANCZOS)
+               let aa = Python.asciify.AsciiManager()
+            let bb = aa.transform(k)
               self.asciid = String(aa!)
               self.visible = true
 /*            } else {

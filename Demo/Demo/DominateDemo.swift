@@ -3,9 +3,31 @@ import SwiftUI
 import WebKit
 import PythonSupport
 
-extension Demo {
-  static public func runDominateDemo() {
+
+struct DominateView : View {
+
+
+  @State var tgt : Bool = false
+  @State var asciid : String?
+  @State var visible : Bool = false
+  
+  
+  var body : some View {
+    let html = runDominateDemo()
+    WebKit(html: html)
+/*    VStack() {
+      ScrollView() {
+        TextField("clem", text: $html).lineLimit(60)
+      }
+    }
+ */
+  }
+  
+  func runDominateDemo() -> String {
     let str = """
+import pip
+print(pip)
+
 import dominate
 from dominate.tags import *
 
@@ -31,35 +53,9 @@ with doc:
     } else {
       hi = "dominate demo failed"
     }
-
-    let window = NSWindow(
-      contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-      styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
-      backing: .buffered, defer: false)
-    window.center()
-    window.setFrameAutosaveName("Dominate Demo")
-    window.isReleasedWhenClosed = false
-    window.contentView = NSHostingView(rootView: DominateView(html: hi))
-    window.makeKeyAndOrderFront(nil)
+    return hi
   }
-}
 
-struct DominateView : View {
-  @State var tgt : Bool = false
-  @State var asciid : String?
-  @State var visible : Bool = false
-  
-  @State var html : String
-  
-  var body : some View {
-    WebKit(html: self.html)
-/*    VStack() {
-      ScrollView() {
-        TextField("clem", text: $html).lineLimit(60)
-      }
-    }
- */
-  }
 }
 
 struct WebKit : NSViewRepresentable {
@@ -102,6 +98,6 @@ class TT : NSObject, WKUIDelegate {
 
 struct Dominate_Previews: PreviewProvider {
   static var previews: some View {
-    DominateView(html: "<h1 align=center>this is a test</h1><hr/>")
+    DominateView()
   }
 }
