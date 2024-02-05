@@ -1,6 +1,6 @@
 
 import AppKit
-import PythonWrapper
+@_exported import PythonWrapper
 // @_exported import PythonWrapper
 
 
@@ -39,13 +39,25 @@ public class PythonInterface {
   public var builtins : [ String : PythonObject ]  = [:] // this is a Swift dictionary mapping names to Python builtin objects
   
   public init() {
-    let hh = Bundle.main.privateFrameworksURL!
+    // This is the appropriate value for running the app under xcode
+    var hh = Bundle.main.privateFrameworksURL!
     print("private framework bundle: \(hh.path)")
 
-    let hh2 = Bundle(for: Self.self).bundleURL
-    print("my bundle: \(hh2.path)")
+    let env = ProcessInfo.processInfo.environment
+    if let _ = env["PLAYGROUND_COMMUNICATION_SOCKET"],
+       let bb = env["PACKAGE_RESOURCE_BUNDLE_PATH"] {
+      hh = URL(string: bb)!
+    }
+      
+/*  This might work for playgrounds also
+  let hh2 = Bundle(for: Self.self).bundleURL
+
+    let hh3 = hh2.deletingLastPathComponent()
+    print("my bundle: \(hh3.path)")
+  */
     
-    let hh1 = hh2.deletingLastPathComponent().appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
+    // FIXME: hh3 instead of hh for Playgrounds
+    let hh1 = hh.appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
 
 /*
  let kk = try? FileManager.default.contentsOfDirectory(
@@ -56,8 +68,8 @@ public class PythonInterface {
     /*
      let hh1 = hh.appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
 //    let hh1 = kk!.first!
+     */
     print("setting PythonHomw: \(hh1.path)")
-    */
     
     hh1.path.withWideChars {
       Py_SetPythonHome( $0 )

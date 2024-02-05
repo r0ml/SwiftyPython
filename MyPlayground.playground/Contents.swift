@@ -1,8 +1,14 @@
 
 import Foundation
 
-import PythonWrapper
 import PythonSupport
+
+
+// for (x,y) in ProcessInfo.processInfo.environment {
+//   print("var: \(x), value: \(y)")
+// }
+
+// let _ = Python
 
 var greeting = "Hello, playground"
 

@@ -56,3 +56,18 @@ git submodule update
 # problem created by attempting to cross device link the docs into /tmp
 # OSError: [Errno 18] Cross-device link: 'build/html' -> '/tmp/_py/_root/pydocs'
 # on build_installer.py 1764, 1725, 1119
+
+
+#####################################################
+# any app has to have "disable library validation" checked -- since the .so files are not signed.
+#####################################################
+
+/bin/ls *.so | xargs -I xx codesign -s '9EL3' xx
+
+#####################################################################
+
+export PYTHONHOME=/Volumes/Proton/Repositories/SwiftyPython/Products/Library/Frameworks/Python.framework/Versions/3.12
+
+bin/python3 -m ensurepip
+bin/python3 -m pip install asciify
+

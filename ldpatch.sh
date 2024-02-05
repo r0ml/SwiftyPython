@@ -16,6 +16,9 @@ cd Products/Library/Frameworks
 
 install_name_tool -id "@loader_path/../Frameworks/Python.framework/Versions/3.12/Python" Python.framework/Python
 
+############################################################
+# Fix the .so
+############################################################
 # libssl
 install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libssl.3.dylib @loader_path/../../libssl.3.dylib Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_ssl.cpython-312-darwin.so
 
@@ -26,13 +29,19 @@ install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib
 
 install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib @loader_path/../../libcrypto.3.dylib Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_hashlib.cpython-312-darwin.so
 
-#
+# tcl/tk
 
 install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtcl8.6.dylib @loader_path/../../libtcl8.6.dylib Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_tkinter.cpython-312-darwin.so
 
 install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtk8.6.dylib @loader_path/../../libtk8.6.dylib Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_tkinter.cpython-312-darwin.so
 
-# install_name_tool -id '@loader_path
+###############################################################
+# fix the .dylibs?  
+###############################################################
+
+cd Python.framework/Versions/3.12/lib/
+
+
 
 # FIXME: do these
 ##################################

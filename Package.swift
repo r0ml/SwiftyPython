@@ -12,7 +12,7 @@ let package = Package.init(
     // Products define the executables and libraries produced by a package, and make them visible to other packages.
     .library(
       name: "Python",
-      targets: ["PythonSupport", "PythonX", "PythonWrapper"]),
+      targets: ["PythonSupport"]),
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
@@ -26,7 +26,7 @@ let package = Package.init(
     ),
     .target(
       name: "PythonWrapper",
-      dependencies: [],
+      dependencies: ["PythonX"],
  //     publicHeadersPath: "./HandRolled/Python.xcframework/macos-arm64_x86_64/Python.framework/Headers"
       
       cSettings: [
