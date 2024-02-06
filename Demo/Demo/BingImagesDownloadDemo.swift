@@ -5,16 +5,12 @@ import PythonSupport
 struct BingImageView : View {
   @State var imgs : [NSImage] = []
   @State var keyword : String = ""
-
+  
   var body : some View {
     VStack {
       Text("Try 'orange'")
       TextField("keyword", text: $keyword, onCommit: {
         let aa = Python.bing_image_downloader.downloader
-//        let c = [ "query": self.keyword.pythonObject, "limit":3.pythonObject,
-//                  "output_dir": FileManager.default.temporaryDirectory.path.pythonObject ] // , "print_paths" : true.pythonObject ]
-//        let d = try! aa.download(c)
-        
         let od = FileManager.default.temporaryDirectory
         defer { try? FileManager.default.removeItem(at: od) }
         
@@ -24,11 +20,11 @@ struct BingImageView : View {
         let ii = try! FileManager.default.contentsOfDirectory(atPath: od.path + "/" + keyword)
         self.imgs = ii.map { NSImage(contentsOfFile: od.path+"/"+keyword+"/"+$0)! }
       })
-    List {
-      ForEach(imgs, id: \.hash ) { i in
-        Image(nsImage: i).resizable().aspectRatio(contentMode: .fit)
+      List {
+        ForEach(imgs, id: \.hash ) { i in
+          Image(nsImage: i).resizable().aspectRatio(contentMode: .fit)
+        }
       }
     }
-  }
   }
 }

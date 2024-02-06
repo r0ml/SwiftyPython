@@ -36,15 +36,6 @@ fileprivate func initModuleFn() -> PyObjectRef? {
 }
 
 fileprivate func swift_module_install(spec : PyObjectRef, def: UnsafeMutablePointer<PyModuleDef>!) -> PyObjectRef? {
-/*      PyRun_SimpleStringFlags("""
-  import stdout_capture
-  import sys
-  class StdoutCatcher:
-      def write(self, stuff):
-          stdout_capture.error_out(stuff)
-  sys.stdout = StdoutCatcher()
-  """, nil);
-  */
   return nil
 }
 

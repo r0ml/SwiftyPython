@@ -62,6 +62,8 @@ cd Python.framework/Versions/Current/bin
 ./python3 -m ensurepip
 ./python3 -m pip install certifi numpy pillow boto3 matplotlib
 
+# Pandas, Statsmodels, SciPy, SciKit-Learn, SciKit-Image, OpenCV
+
 #################################################
 # this is for demo
 rm -rf ../../../../../../../Demo/venv/site-packages/*

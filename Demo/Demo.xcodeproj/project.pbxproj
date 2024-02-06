@@ -22,7 +22,6 @@
 		E7A6EC392B6D41DA0010E6C6 /* AsciifyDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC322B6D41DA0010E6C6 /* AsciifyDemo.swift */; };
 		E7B8F2D72B69A989004D109C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E7B8F2D62B69A989004D109C /* README.md */; };
 		E7BCFB6E233ABB5400C5489E /* ModuleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BCFB6D233ABB5400C5489E /* ModuleDemo.swift */; };
-		E7C275D1232BF9AF00208F12 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = E7C275D0232BF9AF00208F12 /* README.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,7 +66,6 @@
 		E7A6EC322B6D41DA0010E6C6 /* AsciifyDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciifyDemo.swift; sourceTree = "<group>"; };
 		E7B8F2D62B69A989004D109C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E7BCFB6D233ABB5400C5489E /* ModuleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDemo.swift; sourceTree = "<group>"; };
-		E7C275D0232BF9AF00208F12 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +115,6 @@
 				E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */,
 				E7A6EC312B6D41DA0010E6C6 /* NumpyMatplotlibDemo.swift */,
 				E73306F9231B1200008A2E69 /* Preview Content */,
-				E7C275D0232BF9AF00208F12 /* README.txt */,
 				E73306F7231B1200008A2E69 /* Assets.xcassets */,
 			);
 			path = Demo;
@@ -208,7 +205,6 @@
 			files = (
 				E7B8F2D72B69A989004D109C /* README.md in Resources */,
 				E73306FB231B1200008A2E69 /* Preview Assets.xcassets in Resources */,
-				E7C275D1232BF9AF00208F12 /* README.txt in Resources */,
 				E7A6EC372B6D41DA0010E6C6 /* Assets.xcassets in Resources */,
 				E73306F8231B1200008A2E69 /* Assets.xcassets in Resources */,
 			);

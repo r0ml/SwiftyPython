@@ -1,8 +1,6 @@
 
 import Foundation
 @_exported import PythonWrapper
-// @_exported import PythonWrapper
-
 
 public typealias PyObjectRef = UnsafeMutablePointer<PyObject>
 
@@ -45,48 +43,24 @@ public class PythonInterface {
   public init() {
     // This is the appropriate value for running the app under xcode
     var hh = Bundle.main.privateFrameworksURL!
-    print("private framework bundle: \(hh.path)")
 
     let env = ProcessInfo.processInfo.environment
     if let _ = env["PLAYGROUND_COMMUNICATION_SOCKET"],
-       let bb = env["PACKAGE_RESOURCE_BUNDLE_PATH"] {
+      let bb = env["PACKAGE_RESOURCE_BUNDLE_PATH"] {
       hh = URL(string: bb)!
     }
       
-/*  This might work for playgrounds also
-  let hh2 = Bundle(for: Self.self).bundleURL
-
-    let hh3 = hh2.deletingLastPathComponent()
-    print("my bundle: \(hh3.path)")
-  */
-    
     // FIXME: hh3 instead of hh for Playgrounds
     let hh1 = hh.appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
 
-/*
- let kk = try? FileManager.default.contentsOfDirectory(
-            at: hh,
-            includingPropertiesForKeys: nil
-        )
- */
-    /*
-     let hh1 = hh.appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
-//    let hh1 = kk!.first!
-     */
-    print("setting PythonHomw: \(hh1.path)")
-    
+    // print("setting PythonHomw: \(hh1.path)")
+    // FIXME: Py_SetPythonHome is deprecated -- so need to find the modern way to do this
     hh1.path.withWideChars {
       Py_SetPythonHome( $0 )
     }
     
     setup()
     start0()
-
-    /*
-    let ss = PythonObject(retaining: PyDict_GetItem(pyGlobals, "sys".pythonObject.pointer))
-    let kk = hh1.appendingPathComponent("lib").appendingPathComponent("python3.12").appendingPathComponent("site-packages")
-    try! ss.path.insert(0, kk.path)
-*/
   }
   
   public func setup() {
@@ -123,31 +97,12 @@ public class PythonInterface {
     
     pyBuiltins = PythonObject(retaining: PyEval_GetBuiltins())
     
-    // let module = PyImport_ImportModule("sys")
-    // let sys = PythonObject(consuming: module!)
-    // builtins["sys"] = sys
-    
-    //  // If I were initialized, I could have said:
     // FIXME: this should be in the app! not in the package!!!
-    
     let sys = self.sys
     let bb = Bundle.main.resourceURL!
     let bb1 = bb.appendingPathComponent("venv").appendingPathComponent("site-packages")
     try! sys.path.insert(0, bb1.path)
-    
-    
-/*    let kk = hh1.appendingPathComponent("lib").appendingPathComponent("python3.12").appendingPathComponent("site-packages")
-    try! sys.path.insert(0, kk.path)
-*/
 
-    /*
-    let bb2 = bb1.appendingPathComponent("PIL")
-    try! sys.path.insert(1, bb2.path)
-    
-    let bb3 = bb1.appendingPathComponent("numpy").appendingPathComponent("core")
-    try! sys.path.insert(2, bb3.path)
-    */
-    
     do {
       let _ = try Python.run("""
 import ssl
@@ -236,16 +191,11 @@ ssl._create_default_https_context = _create_certifi_context
     return r
   }
   
-  public func eval(_ str: String) -> PythonObject {
+  public func eval(_ str: String) throws -> PythonObject {
     PyErr_Clear()
-//    let jj = PyEval_GetLocals()
     let kk = PyDict_New()
-    
     let j = PyRun_StringFlags(str, Py_eval_input, pyGlobals, kk, nil)
-    if PyErr_Occurred() != nil {
-      PyErr_Print()
-      PyErr_Clear()
-    }
+    try throwErrorIfPresent()
     let r = PythonObject(retaining: j!)
     return r
   }

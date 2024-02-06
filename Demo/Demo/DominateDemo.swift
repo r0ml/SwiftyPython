@@ -5,8 +5,8 @@ import PythonSupport
 
 
 struct DominateView : View {
-
-
+  
+  
   @State var tgt : Bool = false
   @State var asciid : String?
   @State var visible : Bool = false
@@ -15,12 +15,6 @@ struct DominateView : View {
   var body : some View {
     let html = runDominateDemo()
     WebKit(html: html)
-/*    VStack() {
-      ScrollView() {
-        TextField("clem", text: $html).lineLimit(60)
-      }
-    }
- */
   }
   
   func runDominateDemo() -> String {
@@ -57,41 +51,27 @@ with doc:
     }
     return "demo failed"
   }
-
+  
 }
 
 struct WebKit : NSViewRepresentable {
   var html : String
   var tt = TT()
   
-//  func makeCoordinator() -> () {
-//
-//  }
-  
   func makeNSView(context: Context) -> WKWebView {
-    var wv = WKWebView()
+    let wv = WKWebView()
     wv.loadHTMLString("Hello?", baseURL: nil)
     // wv.uiDelegate = tt
     
     wv.autoresizingMask = [ .width, .height]
-      //    wv.webPlugInStart()
+    //    wv.webPlugInStart()
     return wv
   }
   
   func updateNSView(_ nsView: WKWebView, context: Context) {
     print(html)
     nsView.loadHTMLString(html, baseURL: nil)
-  //  nsView.viewWillDraw()
-  //  nsView.superview?.needsLayout = true
-  //  nsView.superview?.layoutSubtreeIfNeeded()
-   // let zz = nsView.superview!.bounds.size
-   // nsView.superview?.setFrameSize(CGSize(width: zz.width+1, height: zz.height+1))
-    print(nsView.isLoading)
-   // nsView.window?.display()
   }
-  
-  // typealias NSViewType = WKWebView
-  
 }
 
 class TT : NSObject, WKUIDelegate {

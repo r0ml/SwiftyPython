@@ -1,6 +1,5 @@
 
 import SwiftUI
-import PythonWrapper
 import os
 import PythonSupport
 

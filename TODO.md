@@ -8,4 +8,4 @@ Is the thing which does the "pip installing" considered an SPM plugin?
 
 Have a command line view which lets me type in python code and evaluate it
 
-
+Check out Pythonista and Pyto?

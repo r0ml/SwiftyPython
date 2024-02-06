@@ -1,6 +1,5 @@
 
 import SwiftUI
-import PythonWrapper
 import PythonSupport
 
 struct AsciifyView : View {
@@ -81,23 +80,8 @@ ascii_image = "\\n".join(ascii_image)
 """,
 returning: "ascii_image")
             
-/*
-//              let pi = Python.imports("Image", from: "PIL")
-            let pi = Python.ImageToAscii
-            
-
-            let bb = try? aa.transform(k)
- */
-            self.asciid = String(k!)
+              self.asciid = String(k!)
               self.visible = true
-/*            } else {
-              if PyErr_Occurred() != nil {
-                PyErr_Print()
-                PyErr_Clear()
-              }
-            }
-  */
-            
           }
         }
       }

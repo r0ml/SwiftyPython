@@ -14,6 +14,7 @@ struct Demo {
     WindowGroup {
       ContentView().task {
         await MainActor.run {
+          // This needs to happen in order to initialize Python
           let p = Python
           swiftModule.addMethod("alert", swiftModuleAlert)
           Python.start()
