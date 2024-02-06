@@ -14,7 +14,7 @@ struct AsciifyView : View {
       Text("Drop an Image on me").frame(maxWidth: .infinity, maxHeight: .infinity)
         .onDrop(of: [NSPasteboard.PasteboardType.fileURL.rawValue], delegate: self  )
         .background(Color.gray)
-      HStack {
+      VStack {
         if visible {
           Image(nsImage: img!)
             .resizable()
@@ -55,29 +55,40 @@ extension AsciifyView : DropDelegate {
             // FIXME: can I set the paths for dlopen here?
             
             
-            /*
-            let boodoo = Python.run("""
+           let k = try! Python.run(
+"""
 import PIL.Image
-from PIL import Image
-boodoo = 'goober'
 
-# i = Image.open('\(f.path)')
-# boodoo = i
-# k = i.resize(150, 75, Image.ANTIALIAS)
+img = PIL.Image.open('\(f.path)')
+img_flag = True
 
-# import asciify
-# boodoo = asciify.do(k)
-""", returning: "boodoo")
-*/
+width, height = img.size
+aspect_ratio = height/width
+new_width = 120
+new_height = aspect_ratio * new_width * 0.55
+img = img.resize((new_width, int(new_height)))
+
+img = img.convert('L')
+
+chars = ["@", "J", "D", "%", "*", "P", "+", "Y", "$", ",", "."]
+
+pixels = img.getdata()
+new_pixels = [chars[pixel//25] for pixel in pixels]
+new_pixels = ''.join(new_pixels)
+new_pixels_count = len(new_pixels)
+ascii_image = [new_pixels[index:index + new_width] for index in range(0, new_pixels_count, new_width)]
+ascii_image = "\\n".join(ascii_image)
+""",
+returning: "ascii_image")
             
+/*
 //              let pi = Python.imports("Image", from: "PIL")
-            let pi = Python.PIL.Image
+            let pi = Python.ImageToAscii
             
-              let j = try! pi.open(f.path)
-            let k = try? j.resize([150,75].pythonObject, pi.LANCZOS)
-            let aa = try! Python.asciify.AsciiManager.__init__()
+
             let bb = try? aa.transform(k)
-              self.asciid = String(bb!)
+ */
+            self.asciid = String(k!)
               self.visible = true
 /*            } else {
               if PyErr_Occurred() != nil {

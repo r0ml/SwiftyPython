@@ -15,12 +15,16 @@ t = np.arange(0, T, 1/fs)
 x = ((np.sin(2*np.pi*1000*t)+np.sin(2*np.pi*1333*t)+np.sin(2*np.pi*800*t))/3).astype(np.float32)
 """
     
-    if let hh = Python.run(str, returning: "x") {
-    
-      let hmx = [Float](numpyArray: hh)!
-      DispatchQueue.global().async { self.play(hmx) }
-    } else {
-      print("numpy demo failed")
+    do {
+      if let hh = try Python.run(str, returning: "x") {
+        
+        let hmx = [Float](numpyArray: hh)!
+        DispatchQueue.global().async { self.play(hmx) }
+      } else {
+        print("numpy demo failed")
+      }
+    } catch( let e) {
+      print(e)
     }
   }
   

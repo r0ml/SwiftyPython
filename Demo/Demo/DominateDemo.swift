@@ -25,9 +25,6 @@ struct DominateView : View {
   
   func runDominateDemo() -> String {
     let str = """
-import pip
-print(pip)
-
 import dominate
 from dominate.tags import *
 
@@ -47,13 +44,18 @@ with doc:
 
 """
     var hi : String
-    if let zz = Python.run(str, returning: "doc"),
-      let hh = try? String(zz.__str__()) {
-      hi = hh
-    } else {
-      hi = "dominate demo failed"
+    do {
+      if let zz = try Python.run(str, returning: "doc"),
+         let hh = try? String(zz.__str__()) {
+        hi = hh
+      } else {
+        hi = "dominate demo failed"
+      }
+      return hi
+    } catch(let e) {
+      print(e)
     }
-    return hi
+    return "demo failed"
   }
 
 }

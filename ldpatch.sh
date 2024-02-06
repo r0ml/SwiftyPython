@@ -39,10 +39,6 @@ install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib
 # fix the .dylibs?  
 ###############################################################
 
-cd Python.framework/Versions/3.12/lib/
-
-
-
 # FIXME: do these
 ##################################
 # the dylibs to fix:
@@ -57,28 +53,24 @@ cd Python.framework/Versions/3.12/lib/
 # libssl.3.dylib
 ####################################
 
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../../Python' Python.framework/Versions/Current/Resources/Python.app/Contents/MacOS/Python
 
-# FIXME: also, from venv need to load:
-######################################
-# PIL/.dylibs/*
-# numpy/.dylibs/*
-# matplotlib/backends/*.so
-# matplotlib/*.so
-# PIL/*.so
-# numpy/core/*.so
-# numpy/linalg/*.so
-# numpy/fft/*.so
-# numpy/random/*.so
-# fontTools/*/*.so
-#######################################
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../Python' Python.framework/Versions/Current/bin/python3
 
-
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../../Python' ../Products/Library/Frameworks/Python.framework/Versions/Current/Resources/Python.app/Contents/MacOS/Python
-
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../Python' ../Products/Library/Frameworks/Python.framework/Versions/Current/bin/python3
-
+cd Python.framework/Versions/Current/bin
 # -- then:
 ./python3 -m ensurepip
+./python3 -m pip install certifi numpy pillow boto3 matplotlib
+
+#################################################
+# this is for demo
+rm -rf ../../../../../../../Demo/venv/site-packages/*
+./python3 -m pip install --target ../../../../../../../Demo/venv/site-packages dominate bing-image-downloader
+
+# ./python3 -m pip install pillow
+# ./python3 -m pip install boto3
+# ./python3 -m pip install matplotlib
+
 # which will check that the above zaps worked -- and also install pip
 
 # e.g.:

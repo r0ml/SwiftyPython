@@ -20,7 +20,7 @@ struct AlertView: View {
     //     swiftModule.addMethod("alert", swiftModuleAlert)
 
     Button(action: {
-      let _ = Python.run(
+      let _ = try? Python.run(
 """
 print("clem")
 swift_module.alert('one','two','three')

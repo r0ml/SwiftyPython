@@ -35,7 +35,8 @@ buf.seek(0)
 result = buf.getvalue()
 """
     
-    guard let hh = Python.run(str, returning: "result") else {
+    
+    guard let hh = try? Python.run(str, returning: "result") else {
       print("failed to run python code")
       return NSImage()
     }

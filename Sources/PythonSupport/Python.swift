@@ -24,10 +24,14 @@ fileprivate func throwErrorIfPresent() throws {
   
   // Fetch the exception and clear the exception state.
   PyErr_Fetch(&type, &value, &traceback)
-  
+
   // The value for the exception may not be set but the type always should be.
   let resultObject = PythonObject(consuming: value ?? type!)
   let tracebackObject = traceback.flatMap { PythonObject(consuming: $0) }
+
+  PyErr_Print()
+  PyErr_Clear()
+
   throw PythonError.exception(resultObject, traceback: tracebackObject)
 }
 
@@ -77,7 +81,12 @@ public class PythonInterface {
     
     setup()
     start0()
-    
+
+    /*
+    let ss = PythonObject(retaining: PyDict_GetItem(pyGlobals, "sys".pythonObject.pointer))
+    let kk = hh1.appendingPathComponent("lib").appendingPathComponent("python3.12").appendingPathComponent("site-packages")
+    try! ss.path.insert(0, kk.path)
+*/
   }
   
   public func setup() {
@@ -102,6 +111,7 @@ public class PythonInterface {
     let stdc = PyImport_ImportModule(stdcnn)
     try! throwErrorIfPresent()
     PyDict_SetItem(pyGlobals, stdcn.pythonObject.retained(), stdc)
+    
   }
   
   public func start() {
@@ -125,6 +135,11 @@ public class PythonInterface {
     let bb1 = bb.appendingPathComponent("venv").appendingPathComponent("site-packages")
     try! sys.path.insert(0, bb1.path)
     
+    
+/*    let kk = hh1.appendingPathComponent("lib").appendingPathComponent("python3.12").appendingPathComponent("site-packages")
+    try! sys.path.insert(0, kk.path)
+*/
+
     /*
     let bb2 = bb1.appendingPathComponent("PIL")
     try! sys.path.insert(1, bb2.path)
@@ -133,7 +148,8 @@ public class PythonInterface {
     try! sys.path.insert(2, bb3.path)
     */
     
- let _ = Python.run("""
+    do {
+      let _ = try Python.run("""
 import ssl
 import certifi
 
@@ -142,7 +158,9 @@ def _create_certifi_context():
 
 ssl._create_default_https_context = _create_certifi_context
 """)
-
+    } catch(let e) {
+      print(e)
+    }
   }
 
     
@@ -196,23 +214,24 @@ ssl._create_default_https_context = _create_certifi_context
     
   }
   
-  public func run(_ str : String, returning: String) -> PythonObject? {
-    return self.run(str, returning: [returning]).first!
+  public func run(_ str : String, returning: String) throws -> PythonObject? {
+    return try self.run(str, returning: [returning]).first!
   }
   
-  public func run(_ str : String, returning: [String] = []) -> [PythonObject?] {
+  public func run(_ str : String, returning: [String] = []) throws -> [PythonObject?] {
     // If I had an error somewhere and forgot to check, now is when I'm going to ignore it.
     PyErr_Clear()
     PyRun_SimpleStringFlags(str, nil)
-    if PyErr_Occurred() != nil {
-      PyErr_Print()
-      PyErr_Clear()
-    }
+    try throwErrorIfPresent()
     
     let r = returning.map {
       // PyDict_GetItemString(pyGlobals, $0.??)
       let z = $0.pythonObject
-      return PythonObject(retaining: PyDict_GetItem(pyGlobals, z.pointer))
+      if let kk = PyDict_GetItem(pyGlobals, z.pointer) {
+        return PythonObject(retaining: kk)
+      } else {
+        return PythonObject(retaining: PyNone)
+      }
     }
     return r
   }
@@ -452,6 +471,7 @@ public enum PythonError : Error, Equatable {
   case invalidCall(PythonObject)
   case invalidModule(String)
   case indexError(PythonObject)
+  case runError(PythonObject)
 }
 
 extension PythonError : CustomStringConvertible {
@@ -466,6 +486,7 @@ extension PythonError : CustomStringConvertible {
     case .invalidCall(let e):   return "Invalid Python call: \(e)"
     case .invalidModule(let m): return "Invalid Python module: \(m)"
     case .indexError(let m):    return "Index error: \(m)"
+    case .runError(let m): return "Run error: \(m)"
     }
   }
 }

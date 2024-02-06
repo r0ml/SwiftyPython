@@ -47,12 +47,16 @@ for bucket in response['Buckets']:
     Python.SECRET_KEY = self.secretKey
     
     // Evaluates the program in str and returns the named global variable(s)
-    if let zz = Python.run(str, returning: "result") {
-      return [String](zz)!
-    } else {
-      return ["boto request failed"]
+    do {
+      if let zz = try Python.run(str, returning: "result") {
+        return [String](zz)!
+      } else {
+        return ["boto request failed"]
+      }
+    } catch(let e ) {
+      print(e)
+      return []
     }
-    
   }
 }
 
