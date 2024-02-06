@@ -62,7 +62,6 @@ with doc:
 
 struct WebKit : NSViewRepresentable {
   var html : String
-  var wv = WKWebView()
   var tt = TT()
   
 //  func makeCoordinator() -> () {
@@ -70,6 +69,7 @@ struct WebKit : NSViewRepresentable {
 //  }
   
   func makeNSView(context: Context) -> WKWebView {
+    var wv = WKWebView()
     wv.loadHTMLString("Hello?", baseURL: nil)
     // wv.uiDelegate = tt
     

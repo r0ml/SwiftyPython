@@ -1,5 +1,5 @@
 
-import AppKit
+import Foundation
 @_exported import PythonWrapper
 // @_exported import PythonWrapper
 
