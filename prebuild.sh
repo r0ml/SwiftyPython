@@ -4,7 +4,6 @@
 git submodule init
 git submodule update
 
-
 #####
 # ncurses is no longer located where it used to be.
 # so instead of ftp'ing the patches, one needs to check out the patched

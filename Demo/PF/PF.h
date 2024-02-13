@@ -11,8 +11,4 @@ FOUNDATION_EXPORT const unsigned char PFVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <PF/PublicHeader.h>
 
-
-
-#include "Python.Framework/Headers/Python.h"
-// #include "Python.h"
-
+#import <PythonWrapper/Header.h>

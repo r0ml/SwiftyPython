@@ -43,12 +43,12 @@ for bucket in response['Buckets']:
 """
     
     // Sets the global variables (in __main__)
-    Python.ACCESS_KEY = self.accessKey
-    Python.SECRET_KEY = self.secretKey
+    PythonInterface.shared.ACCESS_KEY = self.accessKey
+    PythonInterface.shared.SECRET_KEY = self.secretKey
     
     // Evaluates the program in str and returns the named global variable(s)
     do {
-      if let zz = try Python.run(str, returning: "result") {
+      if let zz = try PythonInterface.shared.run(str, returning: "result") {
         return [String](zz)!
       } else {
         return ["boto request failed"]

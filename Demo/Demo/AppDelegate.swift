@@ -15,9 +15,9 @@ struct Demo {
       ContentView().task {
         await MainActor.run {
           // This needs to happen in order to initialize Python
-          let p = Python
+          let p = PythonInterface.shared
           swiftModule.addMethod("alert", swiftModuleAlert)
-          Python.start()
+          PythonInterface.shared.start()
         }
         openWindow(id: "stdout")
       }

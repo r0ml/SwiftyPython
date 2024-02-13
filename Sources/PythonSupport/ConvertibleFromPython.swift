@@ -1,6 +1,6 @@
 
 import Foundation
-import PythonWrapper
+@_exported import PythonWrapper
 
 public protocol ConvertibleFromPython {
   init?(_ object: PythonObject)
@@ -89,7 +89,7 @@ extension Double : ConvertibleFromPython {
 
 extension Optional : ConvertibleFromPython where Wrapped : ConvertibleFromPython {
   public init?(_ object: PythonObject) {
-    if object == Python.None {
+    if object == PythonInterface.shared.None {
       self = .none
     } else {
       guard let converted = Wrapped(object) else { return nil }
@@ -133,7 +133,7 @@ extension Range : ConvertibleFromPython where Bound : ConvertibleFromPython {
   public init?(_ pythonObject: PythonObject) {
     guard pythonObject.isType(&PySlice_Type) else { return nil }
     guard let lowerBound = Bound(pythonObject.start), let upperBound = Bound(pythonObject.stop) else { return nil }
-    guard pythonObject.step == Python.None else { return nil }
+    guard pythonObject.step == PythonInterface.shared.None else { return nil }
     self.init(uncheckedBounds: (lowerBound, upperBound))
   }
 }
@@ -142,7 +142,7 @@ extension PartialRangeFrom : ConvertibleFromPython where Bound : ConvertibleFrom
   public init?(_ pythonObject: PythonObject) {
     guard pythonObject.isType(&PySlice_Type) else { return nil }
     guard let lowerBound = Bound(pythonObject.start) else { return nil }
-    guard pythonObject.stop == Python.None, pythonObject.step == Python.None else { return nil }
+    guard pythonObject.stop == PythonInterface.shared.None, pythonObject.step == PythonInterface.shared.None else { return nil }
     self.init(lowerBound)
   }
 }
@@ -151,7 +151,7 @@ extension PartialRangeUpTo : ConvertibleFromPython where Bound : ConvertibleFrom
   public init?(_ pythonObject: PythonObject) {
     guard pythonObject.isType(&PySlice_Type) else { return nil }
     guard let upperBound = Bound(pythonObject.stop) else { return nil }
-    guard pythonObject.start == Python.None, pythonObject.step == Python.None else { return nil }
+    guard pythonObject.start == PythonInterface.shared.None, pythonObject.step == PythonInterface.shared.None else { return nil }
     self.init(upperBound)
   }
 }
@@ -176,12 +176,12 @@ public protocol NumpyScalar { static var scalarType: PythonObject { get }; stati
 
 extension Int16 : NumpyScalar { public static let scalarType = np.int16; public static let `default` : Int16 = 0 }
 extension Float : NumpyScalar { public static let scalarType = np.float32; public static let `default` : Float = 0 }
-private let np = Python.numpy
+private let np = PythonInterface.shared.numpy
 
 extension Array where Element : NumpyScalar {
   public init?(numpyArray: PythonObject) {
     // Check if input is a `numpy.ndarray` instance.
-    let bb = try? Python.isinstance(numpyArray, np.ndarray)
+    let bb = try? PythonInterface.shared.isinstance(numpyArray, np.ndarray)
     guard let bbb = bb, let b = Bool(bbb) else { return nil }
     if !b { return nil }
     

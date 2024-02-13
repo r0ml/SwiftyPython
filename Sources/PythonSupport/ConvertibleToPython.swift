@@ -1,5 +1,5 @@
 
-import PythonWrapper
+@_exported import PythonWrapper
 
 public protocol ConvertibleToPython {
   var pythonObject: PythonObject { get }
@@ -42,7 +42,7 @@ extension Double : ConvertibleToPython {
 }
 
 extension Optional : ConvertibleToPython where Wrapped : ConvertibleToPython {
-  public var pythonObject: PythonObject { return self?.pythonObject ?? Python.None }
+  public var pythonObject: PythonObject { return self?.pythonObject ?? PythonInterface.shared.None }
 }
 
 extension Array : ConvertibleToPython where Element : ConvertibleToPython {
@@ -71,13 +71,13 @@ extension Dictionary : ConvertibleToPython where Key : ConvertibleToPython, Valu
 }
 
 extension Range : ConvertibleToPython where Bound : ConvertibleToPython {
-  public var pythonObject: PythonObject { return try! Python.slice(lowerBound, upperBound, Python.None) }
+  public var pythonObject: PythonObject { return try! PythonInterface.shared.slice(lowerBound, upperBound, PythonInterface.shared.None) }
 }
 
 extension PartialRangeFrom : ConvertibleToPython where Bound : ConvertibleToPython {
-  public var pythonObject: PythonObject { return try! Python.slice(lowerBound, Python.None, Python.None) }
+  public var pythonObject: PythonObject { return try! PythonInterface.shared.slice(lowerBound, PythonInterface.shared.None, PythonInterface.shared.None) }
 }
 
 extension PartialRangeUpTo : ConvertibleToPython where Bound : ConvertibleToPython {
-  public var pythonObject: PythonObject { return try! Python.slice(Python.None, upperBound, Python.None) }
+  public var pythonObject: PythonObject { return try! PythonInterface.shared.slice(PythonInterface.shared.None, upperBound, PythonInterface.shared.None) }
 }

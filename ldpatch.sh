@@ -1,10 +1,7 @@
 #!/bin/sh
-
-#  patch.sh
-#  SwiftyPython
 #
-#  Created by Robert M Lefkowitz on 2/1/24.
-#  Copyright (c) 1868 Charles Babbage
+# Copyright (c) 1868 Charles Babbage
+# Found amongst his effects by r0ml
 
 cd Products/Library/Frameworks
 
@@ -69,11 +66,3 @@ cd Python.framework/Versions/Current/bin
 rm -rf ../../../../../../../Demo/venv/site-packages/*
 ./python3 -m pip install --target ../../../../../../../Demo/venv/site-packages dominate bing-image-downloader
 
-# ./python3 -m pip install pillow
-# ./python3 -m pip install boto3
-# ./python3 -m pip install matplotlib
-
-# which will check that the above zaps worked -- and also install pip
-
-# e.g.:
-# ./python3 -m pip install --target ../../../../../../../Demo/venv/site-packages asciify

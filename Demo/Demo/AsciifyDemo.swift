@@ -54,7 +54,7 @@ extension AsciifyView : DropDelegate {
             // FIXME: can I set the paths for dlopen here?
             
             
-           let k = try! Python.run(
+           let k = try! PythonInterface.shared.run(
 """
 import PIL.Image
 

@@ -1,5 +1,5 @@
 
-import PythonWrapper
+@_exported import PythonWrapper
 
 fileprivate let modname = "swift_module".cString(using:.utf8)
 

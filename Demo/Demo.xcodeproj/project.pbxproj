@@ -12,7 +12,7 @@
 		E73306F6231B11FF008A2E69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73306F5231B11FF008A2E69 /* ContentView.swift */; };
 		E73306F8231B1200008A2E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73306F7231B1200008A2E69 /* Assets.xcassets */; };
 		E73306FB231B1200008A2E69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73306FA231B1200008A2E69 /* Preview Assets.xcassets */; };
-		E7A6EC2B2B6C9BEC0010E6C6 /* Python in Frameworks */ = {isa = PBXBuildFile; productRef = E7A6EC2A2B6C9BEC0010E6C6 /* Python */; };
+		E78987C82B7AE9D000E4E063 /* PythonLib in Frameworks */ = {isa = PBXBuildFile; productRef = E78987C72B7AE9D000E4E063 /* PythonLib */; };
 		E7A6EC332B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2C2B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift */; };
 		E7A6EC342B6D41DA0010E6C6 /* DominateDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2D2B6D41DA0010E6C6 /* DominateDemo.swift */; };
 		E7A6EC352B6D41DA0010E6C6 /* NumpyDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */; };
@@ -57,6 +57,9 @@
 		E73306FF231B1200008A2E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7330700231B1200008A2E69 /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 		E733070F231B1ED1008A2E69 /* venv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = venv; sourceTree = "<group>"; };
+		E78987A12B7AC83300E4E063 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E78987B92B7AD46700E4E063 /* PF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PF.h; sourceTree = "<group>"; };
+		E78987C22B7AD65E00E4E063 /* dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dummy.m; sourceTree = "<group>"; };
 		E7A6EC2C2B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingImagesDownloadDemo.swift; sourceTree = "<group>"; };
 		E7A6EC2D2B6D41DA0010E6C6 /* DominateDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominateDemo.swift; sourceTree = "<group>"; };
 		E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpyDemo.swift; sourceTree = "<group>"; };
@@ -73,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7A6EC2B2B6C9BEC0010E6C6 /* Python in Frameworks */,
+				E78987C82B7AE9D000E4E063 /* PythonLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,9 +86,11 @@
 		E73306E7231B11FF008A2E69 = {
 			isa = PBXGroup;
 			children = (
+				E78987A12B7AC83300E4E063 /* MyPlayground.playground */,
 				E7B8F2D62B69A989004D109C /* README.md */,
 				E733070F231B1ED1008A2E69 /* venv */,
 				E73306F2231B11FF008A2E69 /* Demo */,
+				E78987B82B7AD46700E4E063 /* PF */,
 				E73306F1231B11FF008A2E69 /* Products */,
 				E7B8F2DA2B6AF3DF004D109C /* Frameworks */,
 			);
@@ -128,6 +133,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		E78987B82B7AD46700E4E063 /* PF */ = {
+			isa = PBXGroup;
+			children = (
+				E78987B92B7AD46700E4E063 /* PF.h */,
+				E78987C22B7AD65E00E4E063 /* dummy.m */,
+			);
+			path = PF;
+			sourceTree = "<group>";
+		};
 		E7B8F2DA2B6AF3DF004D109C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,11 +165,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				E7B8F2D12B69A292004D109C /* PBXTargetDependency */,
 			);
 			name = Demo;
 			packageProductDependencies = (
-				E7A6EC2A2B6C9BEC0010E6C6 /* Python */,
+				E78987C72B7AE9D000E4E063 /* PythonLib */,
 			);
 			productName = CaerBannogSample;
 			productReference = E73306F0231B11FF008A2E69 /* Demo.app */;
@@ -187,7 +200,7 @@
 			);
 			mainGroup = E73306E7231B11FF008A2E69;
 			packageReferences = (
-				E7A6EC292B6C9BEC0010E6C6 /* XCLocalSwiftPackageReference ".." */,
+				E78987C62B7AE9D000E4E063 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = E73306F1231B11FF008A2E69 /* Products */;
 			projectDirPath = "";
@@ -230,13 +243,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E7B8F2D12B69A292004D109C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = E7B8F2D02B69A292004D109C /* Python */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E7330701231B1200008A2E69 /* Debug */ = {
@@ -430,25 +436,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		E7A6EC292B6C9BEC0010E6C6 /* XCLocalSwiftPackageReference ".." */ = {
+		E78987C62B7AE9D000E4E063 /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ..;
-		};
-		E7B8F2CC2B699554004D109C /* XCLocalSwiftPackageReference "../SwiftyPython" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../SwiftyPython;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E7A6EC2A2B6C9BEC0010E6C6 /* Python */ = {
+		E78987C72B7AE9D000E4E063 /* PythonLib */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Python;
-		};
-		E7B8F2D02B69A292004D109C /* Python */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E7B8F2CC2B699554004D109C /* XCLocalSwiftPackageReference "../SwiftyPython" */;
-			productName = Python;
+			productName = PythonLib;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

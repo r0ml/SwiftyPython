@@ -39,7 +39,7 @@ with doc:
 """
     var hi : String
     do {
-      if let zz = try Python.run(str, returning: "doc"),
+      if let zz = try PythonInterface.shared.run(str, returning: "doc"),
          let hh = try? String(zz.__str__()) {
         hi = hh
       } else {

@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package.init(
-  name: "Python",
+  name: "PythonPackage",
   platforms: [
       .macOS(.v14),
   ],
   products: [
     // Products define the executables and libraries produced by a package, and make them visible to other packages.
     .library(
-      name: "Python",
-      targets: ["PythonSupport"]),
+      name: "PythonLib",
+      targets: ["PythonSupport", "PythonWrapper", "PythonX"]),
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
@@ -22,7 +22,7 @@ let package = Package.init(
   targets: [
     .target(
       name: "PythonSupport",
-      dependencies: ["PythonWrapper", "PythonX"]
+      dependencies: ["PythonWrapper"]
     ),
     .target(
       name: "PythonWrapper",
@@ -37,14 +37,15 @@ let package = Package.init(
       ]
     ),
   
-      /*
+      
       .binaryTarget(name: "PythonX",
                 path: "./HandRolled/Python.xcframework"
                 ),
-         */
+/*
       .binaryTarget(name: "PythonX",
                        url: "https://github.com/r0ml/SwiftyPython/releases/download/3.12.beta1/Python.xcframework.zip",
                        checksum: "d2e001ab11c18cbdf0157c0737970d3cbd98af286ac79f9d05e66e7cc63b7e2d"),
-    ]
+*/
+  ]
 
 )

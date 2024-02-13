@@ -1,7 +1,8 @@
 
 import SwiftUI
 import os
-import PythonSupport
+@_exported import PythonWrapper
+
 
 let log = Logger()
 
@@ -9,7 +10,7 @@ fileprivate func error_out(_ mm : PyObjectRef?, _ xx : PyObjectRef?) -> PyObject
   //  var m = mm!.pointee
   let j = PyTuple_GetItem(xx, 0)
   let zz = PythonObject(retaining: j!)
-  try! print( String(Python.str(zz))!, terminator: "", to: &stdout )
+  try! print( String(PythonInterface.shared.str(zz))!, terminator: "", to: &stdout )
   //  let st = PyModule_GetState(&m)
   //  let err = st!.assumingMemoryBound(to: module_state.self).pointee.error
   // PyErr_SetString(err!, "something bad happened".cString(using: .utf8))

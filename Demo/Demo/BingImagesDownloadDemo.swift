@@ -10,7 +10,7 @@ struct BingImageView : View {
     VStack {
       Text("Try 'orange'")
       TextField("keyword", text: $keyword, onCommit: {
-        let aa = Python.bing_image_downloader.downloader
+        let aa = PythonInterface.shared.bing_image_downloader.downloader
         let od = FileManager.default.temporaryDirectory
         defer { try? FileManager.default.removeItem(at: od) }
         

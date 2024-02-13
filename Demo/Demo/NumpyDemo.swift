@@ -16,7 +16,7 @@ x = ((np.sin(2*np.pi*1000*t)+np.sin(2*np.pi*1333*t)+np.sin(2*np.pi*800*t))/3).as
 """
     
     do {
-      if let hh = try Python.run(str, returning: "x") {
+      if let hh = try PythonInterface.shared.run(str, returning: "x") {
         
         let hmx = [Float](numpyArray: hh)!
         DispatchQueue.global().async { self.play(hmx) }
