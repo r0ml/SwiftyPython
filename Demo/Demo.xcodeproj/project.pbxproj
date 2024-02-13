@@ -145,6 +145,7 @@
 				E73306EC231B11FF008A2E69 /* Sources */,
 				E73306ED231B11FF008A2E69 /* Frameworks */,
 				E73306EE231B11FF008A2E69 /* Resources */,
+				E78FB4F42B7C2C37002D2CA1 /* Pip Install */,
 				E733070E231B1EA1008A2E69 /* Copy Venv */,
 				E7C275CF232BF87900208F12 /* Embed Frameworks */,
 			);
@@ -211,6 +212,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E78FB4F42B7C2C37002D2CA1 /* Pip Install */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Pip Install";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${BUILD_DIR}/Debug/Python.framework/Versions/3.12/bin/python3 -m pip install asciify dominate bing-image-downloader --target ${SRCROOT}/venv/site-packages\n\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E73306EC231B11FF008A2E69 /* Sources */ = {
@@ -375,6 +399,7 @@
 				DEVELOPMENT_TEAM = MHEBPE6SV2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -397,6 +422,7 @@
 				DEVELOPMENT_TEAM = MHEBPE6SV2;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = Demo/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = NO;

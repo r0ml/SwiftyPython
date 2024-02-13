@@ -1,3 +1,5 @@
 Products
 HandRolled
-Demo/venv
+Demo/venv/site-packages/*
+!Demo/venv/site-packages/.placeholder
+
