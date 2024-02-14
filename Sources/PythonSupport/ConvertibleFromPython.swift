@@ -17,11 +17,9 @@ extension PythonObject : ConvertibleFromPython {
 }
 
 extension PythonObject {
-  /* I need the inout in order to get the address of the Python Type Object, which is needed for comparison */
+  // I need the inout in order to get the address of the Python Type Object, which is needed for comparison
   public func isType(_ type : inout PyTypeObject) -> Bool {
-    //    let tz = self.pointer.pointee.ob_type.pointee
     let tz = self.pointer.pointee.ob_type
-    //  return withUnsafePointer(to: tz) { (tzx) -> Bool in
     return withUnsafeMutablePointer(to: &type) {
       (zz : UnsafeMutablePointer<PyTypeObject>) -> Bool in
       
@@ -29,13 +27,6 @@ extension PythonObject {
       let gg = Int(0) != Int(PyType_IsSubtype(self.pointer.pointee.ob_type, zz))
       return ss || gg
     }
-    //    return q != 0
-    /*    var typex = type
-     let typePyRef = UnsafeMutableRawPointer( &typex).assumingMemoryBound(to: PyObject.self)
-     */
-    
-    // let result = Int(PyObject_IsInstance(pointer, &tx))
-    // return result != 0
   }
 }
 

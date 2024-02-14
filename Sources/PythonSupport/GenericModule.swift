@@ -18,7 +18,6 @@ fileprivate let mm = unsafeBitCast(callbackWrapper, to: Optional<UnsafeMutableRa
 fileprivate let callbackWrapper : @convention(c) (PyObjectRef, UnsafeMutablePointer<PyModuleDef>?) -> PyObjectRef? = swift_module_install
 
 fileprivate func initModuleFn() -> PyObjectRef? {
-  // return PyModule_Create2(&moduleDef!, 3);
   withUnsafeMutablePointer(to: &myextension_methods[0]) { mxm in
     withUnsafeMutablePointer(to: &slots[0]) { sls in
       withUnsafeBytes(of: modname!) { modnamex in
@@ -51,8 +50,6 @@ open class SwiftModule {
     for i in 0..<j.count { p[i] = j[i] }
     let ii = PyMethodDef(ml_name: p, ml_meth: mf, ml_flags: METH_VARARGS, ml_doc: nil)
   //  try! throwErrorIfPresent()
-
     myextension_methods.insert(ii, at: 0)
-//    p.deallocate()
   }
 }

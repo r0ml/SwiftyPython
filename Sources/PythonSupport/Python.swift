@@ -50,7 +50,6 @@ public class PythonInterface {
       hh = URL(string: bb)!
     }
       
-    // FIXME: hh3 instead of hh for Playgrounds
     let hh1 = hh.appendingPathComponent("Python.framework").appendingPathComponent("Versions").appendingPathComponent("Current")
 
     // print("setting PythonHomw: \(hh1.path)")
@@ -72,7 +71,6 @@ public class PythonInterface {
   
   public func start0() {
     // =======================================================================
-    // Above the line is the initialization of the Swift-implemented module(s)
     // below is the actual initialization of the Python interpreter
     //  Py_Initialize()   // Initialize Python
     
@@ -85,7 +83,6 @@ public class PythonInterface {
     let stdc = PyImport_ImportModule(stdcnn)
     try! throwErrorIfPresent()
     PyDict_SetItem(pyGlobals, stdcn.pythonObject.retained(), stdc)
-    
   }
   
   public func start() {
@@ -100,9 +97,13 @@ public class PythonInterface {
     // FIXME: this should be in the app! not in the package!!!
     let sys = self.sys
     let bb = Bundle.main.resourceURL!
-    let bb1 = bb.appendingPathComponent("venv").appendingPathComponent("site-packages")
+    let bb1 = bb.appendingPathComponent("venv")
     try! sys.path.insert(0, bb1.path)
-
+    
+    let bb2 = bb1.appendingPathComponent("site-packages")
+    try! sys.path.insert(1, bb2.path)
+    
+    
     do {
       let _ = try Python.run("""
 import ssl

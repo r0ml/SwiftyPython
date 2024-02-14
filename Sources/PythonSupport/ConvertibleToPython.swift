@@ -21,9 +21,7 @@ extension String : ConvertibleToPython {
     let c = v.count
     let r = UnsafeMutablePointer<CChar>.allocate(capacity: c)
     for i in 0..<c { r[i]=v[i] }
-//   let j =  withUnsafePointer(to: &v) { r in
     let j = PyUnicode_FromStringAndSize(r, c-1)
-//    }
     r.deallocate()
     return PythonObject(consuming: j!)
   }

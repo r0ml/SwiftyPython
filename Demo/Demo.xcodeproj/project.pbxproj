@@ -10,9 +10,9 @@
 		E70793102334075400CBBAAD /* venv in Copy Venv */ = {isa = PBXBuildFile; fileRef = E733070F231B1ED1008A2E69 /* venv */; };
 		E73306F4231B11FF008A2E69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73306F3231B11FF008A2E69 /* AppDelegate.swift */; };
 		E73306F6231B11FF008A2E69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73306F5231B11FF008A2E69 /* ContentView.swift */; };
-		E73306F8231B1200008A2E69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73306F7231B1200008A2E69 /* Assets.xcassets */; };
 		E73306FB231B1200008A2E69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73306FA231B1200008A2E69 /* Preview Assets.xcassets */; };
-		E7A6EC2B2B6C9BEC0010E6C6 /* Python in Frameworks */ = {isa = PBXBuildFile; productRef = E7A6EC2A2B6C9BEC0010E6C6 /* Python */; };
+		E78FB4F82B7C4829002D2CA1 /* Python in Frameworks */ = {isa = PBXBuildFile; productRef = E78FB4F72B7C4829002D2CA1 /* Python */; };
+		E78FB4FA2B7CF486002D2CA1 /* requirements.txt in Resources */ = {isa = PBXBuildFile; fileRef = E78FB4F92B7CF486002D2CA1 /* requirements.txt */; };
 		E7A6EC332B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2C2B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift */; };
 		E7A6EC342B6D41DA0010E6C6 /* DominateDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2D2B6D41DA0010E6C6 /* DominateDemo.swift */; };
 		E7A6EC352B6D41DA0010E6C6 /* NumpyDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */; };
@@ -57,6 +57,8 @@
 		E73306FF231B1200008A2E69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7330700231B1200008A2E69 /* Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Demo.entitlements; sourceTree = "<group>"; };
 		E733070F231B1ED1008A2E69 /* venv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = venv; sourceTree = "<group>"; };
+		E78FB4F52B7C429D002D2CA1 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E78FB4F92B7CF486002D2CA1 /* requirements.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = requirements.txt; sourceTree = "<group>"; };
 		E7A6EC2C2B6D41DA0010E6C6 /* BingImagesDownloadDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BingImagesDownloadDemo.swift; sourceTree = "<group>"; };
 		E7A6EC2D2B6D41DA0010E6C6 /* DominateDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DominateDemo.swift; sourceTree = "<group>"; };
 		E7A6EC2E2B6D41DA0010E6C6 /* NumpyDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumpyDemo.swift; sourceTree = "<group>"; };
@@ -73,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7A6EC2B2B6C9BEC0010E6C6 /* Python in Frameworks */,
+				E78FB4F82B7C4829002D2CA1 /* Python in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,7 @@
 		E73306E7231B11FF008A2E69 = {
 			isa = PBXGroup;
 			children = (
+				E78FB4F92B7CF486002D2CA1 /* requirements.txt */,
 				E7B8F2D62B69A989004D109C /* README.md */,
 				E733070F231B1ED1008A2E69 /* venv */,
 				E73306F2231B11FF008A2E69 /* Demo */,
@@ -102,6 +105,7 @@
 		E73306F2231B11FF008A2E69 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				E78FB4F52B7C429D002D2CA1 /* MyPlayground.playground */,
 				E73306F3231B11FF008A2E69 /* AppDelegate.swift */,
 				E7A6EC322B6D41DA0010E6C6 /* AsciifyDemo.swift */,
 				E7A6EC302B6D41DA0010E6C6 /* Assets.xcassets */,
@@ -156,7 +160,7 @@
 			);
 			name = Demo;
 			packageProductDependencies = (
-				E7A6EC2A2B6C9BEC0010E6C6 /* Python */,
+				E78FB4F72B7C4829002D2CA1 /* Python */,
 			);
 			productName = CaerBannogSample;
 			productReference = E73306F0231B11FF008A2E69 /* Demo.app */;
@@ -188,7 +192,7 @@
 			);
 			mainGroup = E73306E7231B11FF008A2E69;
 			packageReferences = (
-				E7A6EC292B6C9BEC0010E6C6 /* XCLocalSwiftPackageReference ".." */,
+				E78FB4F62B7C4829002D2CA1 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = E73306F1231B11FF008A2E69 /* Products */;
 			projectDirPath = "";
@@ -206,8 +210,8 @@
 			files = (
 				E7B8F2D72B69A989004D109C /* README.md in Resources */,
 				E73306FB231B1200008A2E69 /* Preview Assets.xcassets in Resources */,
+				E78FB4FA2B7CF486002D2CA1 /* requirements.txt in Resources */,
 				E7A6EC372B6D41DA0010E6C6 /* Assets.xcassets in Resources */,
-				E73306F8231B1200008A2E69 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${BUILD_DIR}/Debug/Python.framework/Versions/3.12/bin/python3 -m pip install asciify dominate bing-image-downloader --target ${SRCROOT}/venv/site-packages\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n${BUILD_DIR}/Debug/Python.framework/Versions/Current/bin/python3 -m pip install -r ${SRCROOT}/requirements.txt --target ${SRCROOT}/venv/site-packages\n\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -316,6 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -375,6 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -456,7 +462,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		E7A6EC292B6C9BEC0010E6C6 /* XCLocalSwiftPackageReference ".." */ = {
+		E78FB4F62B7C4829002D2CA1 /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ..;
 		};
@@ -467,7 +473,7 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E7A6EC2A2B6C9BEC0010E6C6 /* Python */ = {
+		E78FB4F72B7C4829002D2CA1 /* Python */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Python;
 		};
