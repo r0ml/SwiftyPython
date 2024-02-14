@@ -37,7 +37,7 @@ let package = Package.init(
                 ),
 */
       .binaryTarget(name: "PythonX",
-                       url: "https://github.com/r0ml/SwiftyPython/releases/download/3.12.beta1/Python.xcframework.zip",
+                       url: "https://github.com/r0ml/SwiftyPython/releases/download/3.12.0/Python.xcframework.zip",
                        checksum: "341c170126859e227e8b8d79a0660499483b822e42f634d4d412b9b4af2647b8"),
 
   ]
