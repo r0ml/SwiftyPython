@@ -17,25 +17,29 @@ let package = Package.init(
   targets: [
     .target(
       name: "PythonSupport",
-      dependencies: ["PythonWrapper", "PythonX"]
+      dependencies: ["PythonWrapper"]
     ),
     .target(
       name: "PythonWrapper",
+      dependencies: ["RawPythonWrapper"]
+    ),
+    .target(
+      name: "RawPythonWrapper",
       dependencies: ["PythonX"],
       cSettings: [
         .headerSearchPath("Python.framework/Headers")
       ]
     ),
   
-
+/*
       .binaryTarget(name: "PythonX",
                 path: "./HandRolled/Python.xcframework"
                 ),
-/*
+*/
       .binaryTarget(name: "PythonX",
                        url: "https://github.com/r0ml/SwiftyPython/releases/download/3.12.beta1/Python.xcframework.zip",
                        checksum: "d2e001ab11c18cbdf0157c0737970d3cbd98af286ac79f9d05e66e7cc63b7e2d"),
- */
+
   ]
 
 )
