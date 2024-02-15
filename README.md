@@ -24,3 +24,6 @@ The Mac app which import SwiftyPython should have a folder called `venv`.  The P
 - If you enable hardened runtime, you have to disable library validation.
 - You have to disable user script sandboxing in XCode to allow pip to install into venv/site-packages
 
+## Known problems
+
+Although I collect the Python standard output, in the Demo app, it is currently logged to the console, and not displayed in the "stdout" window.
