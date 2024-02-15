@@ -12,28 +12,36 @@ cd Products/Library/Frameworks
 # in Python.framework
 
 FF=Python.framework/Python
-install_name_tool -id "@rpath/../Frameworks/Python.framework/Versions/3.12/Python" -add_rpath '@loader_path/.' $FF
+# install_name_tool -id "@rpath/../Frameworks/Python.framework/Versions/3.12/Python" -add_rpath '@loader_path/.' $FF
+install_name_tool -id "@loader_path/../Frameworks/Python.framework/Versions/3.12/Python" $FF
 
 ############################################################
 # Fix the .so
 ############################################################
 # libssl
 FF=Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_ssl.cpython-312-darwin.so
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libssl.3.dylib @rpath/../../libssl.3.dylib -add_rpath '@loader_path/.' $FF
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib @rpath/../../libcrypto.3.dylib $FF
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libssl.3.dylib @rpath/../../libssl.3.dylib -add_rpath '@loader_path/.' $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libssl.3.dylib '@loader_path/../../libssl.3.dylib' $FF
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib @rpath/../../libcrypto.3.dylib $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib '@loader_path/../../libcrypto.3.dylib' $FF
 
 FF=Python.framework/Versions/3.12/lib/libssl.3.dylib
-install_name_tool -id '@rpath/../../libssl.3.dylib' -add_rpath '@loader_path/.' $FF
+# install_name_tool -id '@rpath/../../libssl.3.dylib' -add_rpath '@loader_path/.' $FF
+install_name_tool -id '@loader_path/../../libssl.3.dylib' $FF
 
 # libcrypto
 FF=Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_hashlib.cpython-312-darwin.so
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib @rpath/../../libcrypto.3.dylib -add_rpath '@loader_path/.' $FF
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib @rpath/../../libcrypto.3.dylib -add_rpath '@loader_path/.' $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libcrypto.3.dylib '@loader_path/../../libcrypto.3.dylib' $FF
 
 # tcl/tk
 
 FF=Python.framework/Versions/3.12/lib/python3.12/lib-dynload/_tkinter.cpython-312-darwin.so
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtcl8.6.dylib @rpath/../../libtcl8.6.dylib -add_rpath '@loader_path/.' $FF
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtk8.6.dylib @rpath/../../libtk8.6.dylib -add_rpath '@loader_path/.' $FF
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtcl8.6.dylib @rpath/../../libtcl8.6.dylib -add_rpath '@loader_path/.' $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtcl8.6.dylib '@loader_path/../../libtcl8.6.dylib' $FF
+
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtk8.6.dylib @rpath/../../libtk8.6.dylib -add_rpath '@loader_path/.' $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib/libtk8.6.dylib '@loader_path/../../libtk8.6.dylib' $FF
 
 ###############################################################
 # fix the .dylibs?  
@@ -54,10 +62,12 @@ install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib
 ####################################
 
 FF=Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@rpath/../../../../Python' -add_rpath '@loader_path/.' $FF
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@rpath/../../../../Python' -add_rpath '@loader_path/.' $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python 'loader_path/../../../../Python' $FF
 
 FF=Python.framework/Versions/Current/bin/python3
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@rpath/../../../Python' -add_rpath '@loader_path/.' $FF
+# install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@rpath/../../../Python' -add_rpath '@loader_path/.' $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../Python' $FF
 
 cd Python.framework/Versions/Current/bin
 # -- then:
