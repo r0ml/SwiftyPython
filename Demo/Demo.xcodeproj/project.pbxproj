@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E70793102334075400CBBAAD /* venv in Copy Venv */ = {isa = PBXBuildFile; fileRef = E733070F231B1ED1008A2E69 /* venv */; };
+		E725F3022B7D915C003CD018 /* Python in Frameworks */ = {isa = PBXBuildFile; productRef = E725F3012B7D915C003CD018 /* Python */; };
+		E725F3052B7D917A003CD018 /* Python in Frameworks */ = {isa = PBXBuildFile; productRef = E725F3042B7D917A003CD018 /* Python */; };
 		E73306F4231B11FF008A2E69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73306F3231B11FF008A2E69 /* AppDelegate.swift */; };
 		E73306F6231B11FF008A2E69 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73306F5231B11FF008A2E69 /* ContentView.swift */; };
 		E73306FB231B1200008A2E69 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73306FA231B1200008A2E69 /* Preview Assets.xcassets */; };
@@ -67,6 +69,7 @@
 		E7A6EC322B6D41DA0010E6C6 /* AsciifyDemo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsciifyDemo.swift; sourceTree = "<group>"; };
 		E7B8F2D62B69A989004D109C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E7BCFB6D233ABB5400C5489E /* ModuleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDemo.swift; sourceTree = "<group>"; };
+		E7D599EA2B7D3EEC0000E608 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +77,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E725F3022B7D915C003CD018 /* Python in Frameworks */,
 				E78FB4F82B7C4829002D2CA1 /* Python in Frameworks */,
+				E725F3052B7D917A003CD018 /* Python in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +89,7 @@
 		E73306E7231B11FF008A2E69 = {
 			isa = PBXGroup;
 			children = (
+				E7D599EA2B7D3EEC0000E608 /* MyPlayground.playground */,
 				E78FB4F92B7CF486002D2CA1 /* requirements.txt */,
 				E7B8F2D62B69A989004D109C /* README.md */,
 				E733070F231B1ED1008A2E69 /* venv */,
@@ -159,6 +165,8 @@
 			name = Demo;
 			packageProductDependencies = (
 				E78FB4F72B7C4829002D2CA1 /* Python */,
+				E725F3012B7D915C003CD018 /* Python */,
+				E725F3042B7D917A003CD018 /* Python */,
 			);
 			productName = CaerBannogSample;
 			productReference = E73306F0231B11FF008A2E69 /* Demo.app */;
@@ -190,7 +198,7 @@
 			);
 			mainGroup = E73306E7231B11FF008A2E69;
 			packageReferences = (
-				E78FB4F62B7C4829002D2CA1 /* XCLocalSwiftPackageReference ".." */,
+				E725F3032B7D917A003CD018 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = E73306F1231B11FF008A2E69 /* Products */;
 			projectDirPath = "";
@@ -460,7 +468,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		E78FB4F62B7C4829002D2CA1 /* XCLocalSwiftPackageReference ".." */ = {
+		E725F3032B7D917A003CD018 /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ..;
 		};
@@ -471,6 +479,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E725F3012B7D915C003CD018 /* Python */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Python;
+		};
+		E725F3042B7D917A003CD018 /* Python */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Python;
+		};
 		E78FB4F72B7C4829002D2CA1 /* Python */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Python;

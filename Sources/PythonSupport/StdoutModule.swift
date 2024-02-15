@@ -1,7 +1,6 @@
 
 import SwiftUI
 import os
-import PythonSupport
 
 let log = Logger()
 
@@ -17,8 +16,8 @@ fileprivate func error_out(_ mm : PyObjectRef?, _ xx : PyObjectRef?) -> PyObject
   return UnsafeMutablePointer(&_Py_NoneStruct);
 }
 
-fileprivate let error_out_name = "error_out".cString(using: .utf8)
-fileprivate let modname = "stdout_capture".cString(using:.utf8)
+fileprivate let error_out_name = strdup("error_out".cString(using: .utf8))
+fileprivate let modname = strdup("stdout_capture".cString(using:.utf8))
 
 fileprivate let cbw = unsafeBitCast(callbackWrapper, to: Optional<UnsafeMutableRawPointer>.self)
 
@@ -50,20 +49,9 @@ fileprivate var moduleDef : PyModuleDef!
 
 
 fileprivate func myInitFn() -> PyObjectRef? {
-  // return PyModule_Create2(&moduleDef!, 3);
-/*  moduleDef = PyModuleDef.init(m_base: PyModuleDef_Base(), m_name: modname,
-                               m_doc: nil, m_size: 0,
-                               m_methods: &myextension_methods,
-                               m_slots: &slots,
-                               m_traverse: nil,
-                               m_clear: nil,
-                               m_free: nil)
-  */
-  
   withUnsafeMutablePointer(to: &myextension_methods[0]) { mxm in
     withUnsafeMutablePointer(to: &slots[0]) { sls in
-      withUnsafeBytes(of: modname!) { modnamex in
-        moduleDef = PyModuleDef.init(m_base: PyModuleDef_Base(), m_name: modnamex.baseAddress?.bindMemory(to: CChar.self, capacity: modname!.count+1),
+        moduleDef = PyModuleDef.init(m_base: PyModuleDef_Base(), m_name: modname,
                                      m_doc: nil, m_size: 0,
                                      m_methods: mxm, // &myextension_methods,
                                      m_slots: sls, // &slots,
@@ -71,13 +59,7 @@ fileprivate func myInitFn() -> PyObjectRef? {
                                      m_clear: nil,
                                      m_free: nil)
       }
-    }
   }
-
-  
-  
-  
-  
   return PyModuleDef_Init(&moduleDef)
 }
 
@@ -88,7 +70,7 @@ extension StdoutCapture : TextOutputStream {
   }
 }
 
-var stringer = ""
+public var stringer = ""
 
 public class StdoutCapture {
   public init() {
