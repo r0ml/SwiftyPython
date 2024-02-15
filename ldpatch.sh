@@ -63,7 +63,7 @@ install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/lib
 
 FF=Python.framework/Versions/3.12/Resources/Python.app/Contents/MacOS/Python
 # install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@rpath/../../../../Python' -add_rpath '@loader_path/.' $FF
-install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python 'loader_path/../../../../Python' $FF
+install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@loader_path/../../../../Python' $FF
 
 FF=Python.framework/Versions/Current/bin/python3
 # install_name_tool -change /Library/Frameworks/Python.framework/Versions/3.12/Python '@rpath/../../../Python' -add_rpath '@loader_path/.' $FF

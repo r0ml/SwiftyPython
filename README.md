@@ -19,3 +19,8 @@ In addition to these built-in packages, one can provide a `requirements.txt` fil
 The Mac app which import SwiftyPython should have a folder called `venv`.  The PYTHONPATH will include `venv` and `venv/site-packages` (where the `requirements.txt` will install packages).
 
 
+## Building an app using SwiftyPython
+
+- If you enable hardened runtime, you have to disable library validation.
+- You have to disable user script sandboxing in XCode to allow pip to install into venv/site-packages
+
